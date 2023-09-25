@@ -1,8 +1,9 @@
-﻿// Lab2_Massives.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+// Lab2_Massives.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 #include<iostream>
 #include<string>
 #include<vector>
+
 using namespace std;
 
 void Enter(vector<int>&arrays) {
@@ -26,7 +27,7 @@ void Enter(vector<int>&arrays) {
 		
 	
 
-}
+}      
 void revert(vector<int>& arrays, vector<int>& arr_) {
 	int parr = 0;
 	cout << "\n";
@@ -38,7 +39,7 @@ void revert(vector<int>& arrays, vector<int>& arr_) {
 		cout << "  " << arr_[j];
 	}
 }
-void E_elem(vector<int>& elem_) {
+void E_elem(vector<int>&elem_) {
 	int a_;
 	int b_ = 0;
 	int c_ = 0;
@@ -60,19 +61,45 @@ void E_elem(vector<int>& elem_) {
 	}
 
 }
-void f_elem(vector<int>& elem_) {
-	int e_memory=0;
-	int var1 = 2;
-	int var2 = 4;
-	int var3 = 6;
+int  f_elem(vector<int>& elem_) {
+	/*
+	Делаем счетчики по 0;
+	с помощью циклов пробегаемся по вектору elem_, если символы вектора повторяются,
+	то счет обновляем count++
+	Если счет count>максимального, до максимальный обнволяем, а частый элемент - элемент вектора в данный момент
+	*/
+	int maxCount = 0;
+	int mostFreqElem = elem_[0];
 	for (int i = 0; i < elem_.size(); i++) {
-		if (elem_[i] >= var1 || elem_[i] >= var2 || elem_[i] >= var3) {
-			elem_[i] = e_memory;
+		int count = 0;
+		for (int j = 0; j < elem_.size(); j++) {
+			if (elem_[j] = elem_[i]) {
+				count++;
+			}
+		}
+		if (count > maxCount) {
+			maxCount = count;
+			mostFreqElem = elem_[i];
 
 		}
-		cout << "\n";
-		cout << "Самый частый элемент: " << e_memory << "\n";
-	break;}
+	}
+	return mostFreqElem;
+	
+}
+void bubbleSort(vector<int>&coll) {
+	int s = coll.size();
+
+	for (int i = 0; i < s - 1; i++) {
+
+		for (int j = 0; j < s - i - 1; j++) {
+			// сравниваем соседние элементы вектора
+			if (coll[j] > coll[j + 1]) {
+
+				swap(coll[j], coll[j + 1]);
+			}
+		}
+
+	}
 }
 
 int main()
@@ -106,7 +133,33 @@ int main()
 */
 	vector<int> elem_;
 	E_elem(elem_);
-	f_elem(elem_);
-	return 0;
+	int result_ = f_elem(elem_);
+	cout << "\n";
+	cout << "Самый частый элемент вектора:  " << result_ << endl;
+
+	/*
+	отсортировать заданный вектор по возрастанию
+	- Данную задачу будем решать с помощью готового вектора. 
+	- Сортировать будем с помощью пузырька.
+	*/
+
+	vector<int> coll = { 1,3,5,454,1212,234,45,3,2 };
+	cout << "заданный вектор: " << "\n";
+	for (int item : coll){
+		cout << " " << item;
+	   
+	}
+	
+	cout << "\n";
+	cout << "Отсортированный вектор" << "\n";
+	
+	bubbleSort(coll);
+	for (int num : coll) {
+		cout << "   " << num;
+	}
+
+    /*
+	
+	*/
 }
 
